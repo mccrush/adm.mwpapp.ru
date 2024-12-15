@@ -4,25 +4,25 @@
       <h6>Список элементов пуст</h6>
     </div>
 
-    <table v-else class="table table-striped">
+    <table v-else class="table table-striped align-middle">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Email</th>
-          <th scope="col">Subscribe</th>
-          <th scope="col">Premium</th>
-          <th scope="col">Date Start Pro</th>
-          <th scope="col">Date End Pro</th>
-          <th scope="col">Проектов</th>
-          <th scope="col">Бан</th>
+          <th scope="col" class="text-center">Subscribe</th>
+          <th scope="col" class="text-center">Pro</th>
+          <th scope="col" class="text-center">Start Pro</th>
+          <th scope="col" class="text-center">End Pro</th>
+          <th scope="col" class="text-center">Проектов</th>
+          <th scope="col" class="text-center">Бан</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in items" :key="item.id">
           <th scope="row">{{ index + 1 }}</th>
-          <td>{{ item.email }}</td>
+          <td class="small">{{ item.email }}</td>
           <td
-            class="text-center"
+            class="text-center small"
             :class="{ 'bg-success-subtle': item.user_metadata.subscription }"
           >
             <div>
@@ -35,7 +35,7 @@
             </div>
           </td>
           <td
-            class="text-center"
+            class="text-center small"
             :class="{ 'bg-success-subtle': item.user_metadata.premium }"
           >
             <div>{{ item.user_metadata.premium }}</div>
@@ -45,16 +45,25 @@
               />
             </div>
           </td>
-          <td>
+          <td class="text-center small">
             {{
               getLocaleDateFromDateDigit(item.user_metadata.dateStartPremium)
             }}
           </td>
-          <td>
-            {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPremium) }}
+          <td class="text-center small">
+            <div>
+              {{
+                getLocaleDateFromDateDigit(item.user_metadata.dateEndPremium)
+              }}
+            </div>
+            <div><BtnRenewText /></div>
           </td>
-          <td>{{ item.user_metadata.projects?.length }}</td>
-          <td>до {{ getLocaleDateFromDateDigit(item.banned_until) }}</td>
+          <td class="text-center small">
+            {{ item.user_metadata.projects?.length }}
+          </td>
+          <td class="text-center small">
+            {{ getLocaleDateFromDateDigit(item.banned_until) }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -66,9 +75,10 @@ import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDig
 
 import BtnOnText from './../buttons/BtnOnText.vue'
 import BtnOffText from './../buttons/BtnOffText.vue'
+import BtnRenewText from './../buttons/BtnRenewText.vue'
 
 export default {
-  components: { BtnOnText, BtnOffText },
+  components: { BtnOnText, BtnOffText, BtnRenewText },
   props: { items: Array },
   emits: ['edit-item', 'delete-item', 'create-item'],
   methods: {

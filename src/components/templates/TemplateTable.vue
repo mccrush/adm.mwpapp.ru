@@ -21,8 +21,30 @@
         <tr v-for="(item, index) in items" :key="item.id">
           <th scope="row">{{ index + 1 }}</th>
           <td>{{ item.email }}</td>
-          <td>{{ item.user_metadata.subscription }}</td>
-          <td>{{ item.user_metadata.premium }}</td>
+          <td
+            class="text-center"
+            :class="{ 'bg-success-subtle': item.user_metadata.subscription }"
+          >
+            <div>
+              {{ item.user_metadata.subscription }}
+            </div>
+            <div>
+              <BtnOffText v-if="item.user_metadata.subscription" /><BtnOnText
+                v-else
+              />
+            </div>
+          </td>
+          <td
+            class="text-center"
+            :class="{ 'bg-success-subtle': item.user_metadata.premium }"
+          >
+            <div>{{ item.user_metadata.premium }}</div>
+            <div>
+              <BtnOffText v-if="item.user_metadata.premium" /><BtnOnText
+                v-else
+              />
+            </div>
+          </td>
           <td>
             {{
               getLocaleDateFromDateDigit(item.user_metadata.dateStartPremium)
@@ -42,12 +64,11 @@
 <script>
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 
-import BtnEdit from './../buttons/BtnEdit.vue'
-import BtnTrash from './../buttons/BtnTrash.vue'
-import BtnCreateElement from './../buttons/BtnCreateElement.vue'
+import BtnOnText from './../buttons/BtnOnText.vue'
+import BtnOffText from './../buttons/BtnOffText.vue'
 
 export default {
-  components: { BtnEdit, BtnTrash, BtnCreateElement },
+  components: { BtnOnText, BtnOffText },
   props: { items: Array },
   emits: ['edit-item', 'delete-item', 'create-item'],
   methods: {

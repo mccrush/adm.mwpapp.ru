@@ -14,7 +14,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li v-for="page in dataPages" :key="page.id" class="nav-item">
             <router-link
               class="nav-link active"
@@ -23,9 +23,13 @@
               >{{ page.title }}</router-link
             >
           </li>
-        </ul>
+        </ul> -->
 
-        <button class="btn btn-light" @click="logOut">Выйти</button>
+        <div>&nbsp;</div>
+
+        <button v-if="!isLoggedIn" class="btn btn-light" @click="logOut">
+          Выйти
+        </button>
       </div>
     </div>
   </nav>
@@ -38,6 +42,11 @@ export default {
   data() {
     return {
       dataPages
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
     }
   },
   methods: {

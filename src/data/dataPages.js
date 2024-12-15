@@ -1,10 +1,10 @@
 export const dataPages = [
   {
-    id: '1',
+    id: '3',
     path: '/',
-    name: 'index',
-    title: 'Главная страница',
-    component: () => import('./../pages/PageIndex.vue'),
+    name: 'users',
+    title: 'Пользователи',
+    component: () => import('./../pages/PageUsers.vue'),
     position: 1,
     showMenu: true,
     group: 1
@@ -16,17 +16,8 @@ export const dataPages = [
     title: 'Авторизация',
     component: () => import('./../pages/PageLogin.vue'),
     position: 1,
-    showMenu: true,
+    showMenu: false,
     group: 1
   },
-  {
-    id: '3',
-    path: '/users',
-    name: 'users',
-    title: 'Пользователи',
-    component: () => import('./../pages/PageUsers.vue'),
-    position: 1,
-    showMenu: true,
-    group: 1
-  }
+
 ]

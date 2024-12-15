@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div>UsersMain</div>
-    <div>
-      <TemplateTable :items="users" />
-    </div>
+    <TemplateTable :items="users" />
   </div>
 </template>
 

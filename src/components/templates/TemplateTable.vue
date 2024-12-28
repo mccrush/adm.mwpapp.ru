@@ -29,10 +29,34 @@
               {{ item.user_metadata.subscription }}
             </div>
             <div>
-              <BtnAllTextSm v-if="item.user_metadata.subscription">
+              <BtnAllTextSm
+                v-if="item.user_metadata.subscription"
+                @click="$emit('subscribe-off', { userId: item.id })"
+              >
                 Отключить
               </BtnAllTextSm>
-              <BtnAllTextSm v-else> Включить </BtnAllTextSm>
+              <div v-else class="dropdown">
+                <BtnAllTextSm data-bs-toggle="dropdown">
+                  Включить
+                </BtnAllTextSm>
+                <div class="dropdown-menu border-0 p-2">
+                  <input
+                    class="form-control form-control-sm"
+                    type="datetime-local"
+                  />
+                  <BtnAllTextSm
+                    class="mt-2"
+                    @click="
+                      $emit('subscribe-on', {
+                        userId: item.id,
+                        date: item.user_metadata.dateEndPremium
+                      })
+                    "
+                  >
+                    Включить подписку
+                  </BtnAllTextSm>
+                </div>
+              </div>
             </div>
           </td>
           <td
@@ -41,7 +65,9 @@
           >
             <div>{{ item.user_metadata.premium }}</div>
             <div>
-              <BtnAllTextSm v-if="item.user_metadata.premium"
+              <BtnAllTextSm
+                v-if="item.user_metadata.premium"
+                @click="$emit('premium-off', { userId: item.id })"
                 >Отключить</BtnAllTextSm
               >
               <BtnAllTextSm v-else>Включить</BtnAllTextSm>
@@ -80,7 +106,14 @@ import BtnAllTextSm from './../buttons/BtnAllTextSm.vue'
 export default {
   components: { BtnAllTextSm },
   props: { items: Array, lengthProUsers: Number },
-  emits: ['edit-item', 'delete-item', 'create-item'],
+  emits: [
+    'edit-item',
+    'delete-item',
+    'create-item',
+    'subscribe-off',
+    'subscribe-on',
+    'premium-off'
+  ],
   methods: {
     getLocaleDateFromDateDigit
   }

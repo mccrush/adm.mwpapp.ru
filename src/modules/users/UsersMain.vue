@@ -4,7 +4,13 @@
       <TheNavbar>
         <FormSearch v-model:searchText="searchText" />
       </TheNavbar>
-      <TemplateTable :items="searchUsers" :lengthProUsers="lengthProUsers" />
+      <TemplateTable
+        :items="searchUsers"
+        :lengthProUsers="lengthProUsers"
+        @subscribe-off="subscribeOff"
+        @subscribe-on="subscribeOn"
+        @premium-off="premiumOff"
+      />
     </div>
   </div>
 </template>
@@ -41,6 +47,21 @@ export default {
       return this.users.filter(item => item.user_metadata.premium).length
     }
   },
-  methods: {}
+  methods: {
+    subscribeOff({ userId }) {
+      if (confirm('Точно отключить?')) {
+        console.log('S is Off for =', userId)
+      }
+    },
+    subscribeOn({ userId, date }) {
+      console.log('S is On for =', userId)
+      console.log('To =', date)
+    },
+    premiumOff({ userId }) {
+      if (confirm('Точно отключить?')) {
+        console.log('P is Off for =', userId)
+      }
+    }
+  }
 }
 </script>

@@ -1,22 +1,26 @@
 <template>
   <div>
-    <TheNavbar />
+    <TheNavbar>
+      <FormSearch v-model:searchText="searchText" />
+    </TheNavbar>
     <TemplateTable :items="searchUsers" />
   </div>
 </template>
 
 <script>
 import TheNavbar from './../../components/interface/TheNavbar.vue'
+import FormSearch from './../../components/forms/FormSearch.vue'
 import TemplateTable from './../../components/templates/TemplateTable.vue'
 
 export default {
   components: {
     TheNavbar,
+    FormSearch,
     TemplateTable
   },
   data() {
     return {
-      search: ''
+      searchText: ''
     }
   },
   computed: {
@@ -24,9 +28,9 @@ export default {
       return this.$store.getters.users
     },
     searchUsers() {
-      if (this.search) {
+      if (this.searchText) {
         return this.users.filter(item =>
-          item.email.toUpperCase().includes(this.search.toUpperCase())
+          item.email.toUpperCase().includes(this.searchText.toUpperCase())
         )
       }
       return this.users

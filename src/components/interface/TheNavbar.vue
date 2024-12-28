@@ -20,7 +20,7 @@
         </ul> -->
 
         <!-- <div>&nbsp;</div> -->
-        <FormSearch />
+        <slot></slot>
 
         <BtnAllText v-if="isLoggedIn" @click="logOut">Выйти</BtnAllText>
       </div>

@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Email - {{ items.length }}</th>
+          <th scope="col">Users - {{ items.length }}</th>
           <th scope="col" class="text-center">Subscribe</th>
           <th scope="col" class="text-center">Pro - {{ lengthProUsers }}</th>
           <th scope="col" class="text-center">Start Pro</th>

@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <TheNavbar>
-      <FormSearch v-model:searchText="searchText" />
-    </TheNavbar>
-    <TemplateTable :items="searchUsers" :lengthProUsers="lengthProUsers" />
+  <div class="container-lg p-3">
+    <div class="border rounded p-2">
+      <TheNavbar>
+        <FormSearch v-model:searchText="searchText" />
+      </TheNavbar>
+      <TemplateTable :items="searchUsers" :lengthProUsers="lengthProUsers" />
+    </div>
   </div>
 </template>
 

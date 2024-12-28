@@ -1,6 +1,6 @@
 <template>
   <div
-    class="login-form col-md-4 border rounded m-auto p-3"
+    class="login-form col-md-4 shadow rounded bg-dark-subtle text-body-secondary m-auto p-3"
     data-bs-theme="dark"
   >
     <h4 class="text-center mt-2">{{ dataLogin[mod].header }}</h4>
@@ -80,19 +80,19 @@
         @click="mod = 'login'"
         ><small>{{ dataLogin['login'].button }}</small></BtnLogin
       >
-      <BtnLogin
+      <!-- <BtnLogin
         v-if="mod === 'login' || mod === 'restore'"
         class="btn btn-sm btn-dark text-body-secondary w-50"
         @click="mod = 'create'"
       >
         <small>{{ dataLogin['create'].button }}</small></BtnLogin
-      >
-      <BtnLogin
+      > -->
+      <!-- <BtnLogin
         v-if="mod === 'login' || mod === 'create'"
         class="btn btn-sm btn-dark text-body-secondary w-50"
         @click="mod = 'restore'"
         ><small>{{ dataLogin['restore'].button }}</small></BtnLogin
-      >
+      > -->
     </div>
   </div>
 </template>

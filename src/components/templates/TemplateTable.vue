@@ -8,9 +8,9 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Email</th>
+          <th scope="col">Email - {{ items.length }}</th>
           <th scope="col" class="text-center">Subscribe</th>
-          <th scope="col" class="text-center">Pro</th>
+          <th scope="col" class="text-center">Pro - {{ lengthProUsers }}</th>
           <th scope="col" class="text-center">Start Pro</th>
           <th scope="col" class="text-center">End Pro</th>
           <th scope="col" class="text-center">Last Sig</th>
@@ -29,9 +29,8 @@
               {{ item.user_metadata.subscription }}
             </div>
             <div>
-              <BtnOffText v-if="item.user_metadata.subscription" /><BtnOnText
-                v-else
-              />
+              <BtnOffText v-if="item.user_metadata.subscription" />
+              <BtnOnText v-else />
             </div>
           </td>
           <td
@@ -40,9 +39,8 @@
           >
             <div>{{ item.user_metadata.premium }}</div>
             <div>
-              <BtnOffText v-if="item.user_metadata.premium" /><BtnOnText
-                v-else
-              />
+              <BtnOffText v-if="item.user_metadata.premium" />
+              <BtnOnText v-else />
             </div>
           </td>
           <td class="text-center small">
@@ -79,7 +77,7 @@ import BtnRenewText from './../buttons/BtnRenewText.vue'
 
 export default {
   components: { BtnOnText, BtnOffText, BtnRenewText },
-  props: { items: Array },
+  props: { items: Array, lengthProUsers: Number },
   emits: ['edit-item', 'delete-item', 'create-item'],
   methods: {
     getLocaleDateFromDateDigit

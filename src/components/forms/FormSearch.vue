@@ -2,6 +2,7 @@
   <div>
     <input
       class="form-control"
+      placeholder="Search"
       :value="searchText"
       @input="$emit('update:searchText', $event.target.value)"
     />

@@ -3,7 +3,7 @@
     <TheNavbar>
       <FormSearch v-model:searchText="searchText" />
     </TheNavbar>
-    <TemplateTable :items="searchUsers" />
+    <TemplateTable :items="searchUsers" :lengthProUsers="lengthProUsers" />
   </div>
 </template>
 
@@ -34,6 +34,9 @@ export default {
         )
       }
       return this.users
+    },
+    lengthProUsers() {
+      return this.users.filter(item => item.user_metadata.premium).length
     }
   },
   methods: {}

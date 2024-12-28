@@ -1,6 +1,6 @@
 <template>
   <div class="container-lg p-3">
-    <div class="border rounded p-2">
+    <div class="rounded shadow-sm p-3">
       <TheNavbar>
         <FormSearch v-model:searchText="searchText" />
       </TheNavbar>

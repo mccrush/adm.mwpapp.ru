@@ -4,7 +4,7 @@
       <h6>Список элементов пуст</h6>
     </div>
 
-    <table v-else class="table table-striped align-middle">
+    <table v-else class="table table-striped align-middle mb-0">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -29,8 +29,10 @@
               {{ item.user_metadata.subscription }}
             </div>
             <div>
-              <BtnOffText v-if="item.user_metadata.subscription" />
-              <BtnOnText v-else />
+              <BtnAllTextSm v-if="item.user_metadata.subscription">
+                Отключить
+              </BtnAllTextSm>
+              <BtnAllTextSm v-else> Включить </BtnAllTextSm>
             </div>
           </td>
           <td
@@ -39,8 +41,10 @@
           >
             <div>{{ item.user_metadata.premium }}</div>
             <div>
-              <BtnOffText v-if="item.user_metadata.premium" />
-              <BtnOnText v-else />
+              <BtnAllTextSm v-if="item.user_metadata.premium"
+                >Отключить</BtnAllTextSm
+              >
+              <BtnAllTextSm v-else>Включить</BtnAllTextSm>
             </div>
           </td>
           <td class="text-center small">
@@ -54,7 +58,7 @@
                 getLocaleDateFromDateDigit(item.user_metadata.dateEndPremium)
               }}
             </div>
-            <div><BtnRenewText /></div>
+            <div><BtnAllTextSm>Продлить</BtnAllTextSm></div>
           </td>
           <td class="text-center small">
             {{ getLocaleDateFromDateDigit(item.last_sign_in_at) }}
@@ -71,12 +75,10 @@
 <script>
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
 
-import BtnOnText from './../buttons/BtnOnText.vue'
-import BtnOffText from './../buttons/BtnOffText.vue'
-import BtnRenewText from './../buttons/BtnRenewText.vue'
+import BtnAllTextSm from './../buttons/BtnAllTextSm.vue'
 
 export default {
-  components: { BtnOnText, BtnOffText, BtnRenewText },
+  components: { BtnAllTextSm },
   props: { items: Array, lengthProUsers: Number },
   emits: ['edit-item', 'delete-item', 'create-item'],
   methods: {

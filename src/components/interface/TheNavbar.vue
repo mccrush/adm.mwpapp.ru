@@ -1,19 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-md bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+
+      <BtnNavbarCollapse />
+      <div
+        class="collapse navbar-collapse d-block justify-content-between"
+        id="navbarSupportedContent"
       >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li v-for="page in dataPages" :key="page.id" class="nav-item">
             <router-link
@@ -25,11 +19,10 @@
           </li>
         </ul> -->
 
-        <div>&nbsp;</div>
+        <!-- <div>&nbsp;</div> -->
+        <FormSearch />
 
-        <button v-if="!isLoggedIn" class="btn btn-light" @click="logOut">
-          Выйти
-        </button>
+        <BtnAllText v-if="isLoggedIn" @click="logOut">Выйти</BtnAllText>
       </div>
     </div>
   </nav>
@@ -38,7 +31,12 @@
 <script>
 import { dataPages } from './../../data/dataPages'
 
+import FormSearch from './../forms/FormSearch.vue'
+import BtnNavbarCollapse from './../buttons/BtnNavbarCollapse.vue'
+import BtnAllText from './../buttons/BtnAllText.vue'
+
 export default {
+  components: { FormSearch, BtnNavbarCollapse, BtnAllText },
   data() {
     return {
       dataPages

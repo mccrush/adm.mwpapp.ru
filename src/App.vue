@@ -1,6 +1,5 @@
 <template>
   <div>
-    <TheNavbar />
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" />
@@ -11,14 +10,9 @@
 </template>
 
 <script>
-import TheNavbar from './components/interface/TheNavbar.vue'
 //import PageIndex from './pages/PageIndex.vue'
 
-export default {
-  components: {
-    TheNavbar
-  }
-}
+export default {}
 </script>
 
 <style lang="scss">

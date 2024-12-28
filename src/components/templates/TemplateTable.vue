@@ -13,7 +13,7 @@
           <th scope="col" class="text-center">Pro</th>
           <th scope="col" class="text-center">Start Pro</th>
           <th scope="col" class="text-center">End Pro</th>
-          <th scope="col" class="text-center">Проектов</th>
+          <th scope="col" class="text-center">Last Sig</th>
           <th scope="col" class="text-center">Бан</th>
         </tr>
       </thead>
@@ -59,7 +59,7 @@
             <div><BtnRenewText /></div>
           </td>
           <td class="text-center small">
-            {{ item.user_metadata.projects?.length }}
+            {{ getLocaleDateFromDateDigit(item.last_sign_in_at) }}
           </td>
           <td class="text-center small">
             {{ getLocaleDateFromDateDigit(item.banned_until) }}

@@ -9,10 +9,12 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Users - {{ items.length }}</th>
-          <th scope="col" class="text-center">Subscribe</th>
-          <th scope="col" class="text-center">Pro - {{ lengthProUsers }}</th>
-          <th scope="col" class="text-center">Start Pro</th>
-          <th scope="col" class="text-center">End Pro</th>
+          <th scope="col" class="text-center">proFree</th>
+          <th scope="col" class="text-center">
+            proStatus - {{ lengthProUsers }}
+          </th>
+          <th scope="col" class="text-center">dateStartPro</th>
+          <th scope="col" class="text-center">dateEndPro</th>
           <th scope="col" class="text-center">Last Sig</th>
           <th scope="col" class="text-center">Бан</th>
         </tr>
@@ -23,14 +25,14 @@
           <td class="small">{{ item.email }}</td>
           <td
             class="text-center small"
-            :class="{ 'bg-success': item.user_metadata.subscription }"
+            :class="{ 'bg-success': item.user_metadata.proFree }"
           >
             <div>
-              {{ item.user_metadata.subscription }}
+              {{ item.user_metadata.proFree }}
             </div>
-            <div>
+            <!-- <div>
               <BtnAllTextSm
-                v-if="item.user_metadata.subscription"
+                v-if="item.user_metadata.proFree"
                 @click="$emit('subscribe-off', { userId: item.id })"
               >
                 Отключить
@@ -57,16 +59,15 @@
                   </BtnAllTextSm>
                 </div>
               </div>
-            </div>
+            </div> -->
           </td>
           <td
             class="text-center small"
-            :class="{ 'bg-success': item.user_metadata.premium }"
+            :class="{ 'bg-success': item.user_metadata.proStatus }"
           >
-            <div>{{ item.user_metadata.premium }}</div>
             <div>
               <BtnAllTextSm
-                v-if="item.user_metadata.premium"
+                v-if="item.user_metadata.proStatus"
                 @click="$emit('premium-off', { userId: item.id })"
                 >Отключить</BtnAllTextSm
               >
@@ -74,20 +75,17 @@
             </div>
           </td>
           <td class="text-center small">
-            {{
-              getLocaleDateFromDateDigit(item.user_metadata.dateStartPremium)
-            }}
+            {{ getLocaleDateFromDateDigit(item.user_metadata.dateStartPro) }}
           </td>
           <td class="text-center small">
             <div>
-              {{
-                getLocaleDateFromDateDigit(item.user_metadata.dateEndPremium)
-              }}
+              {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPro) }}
             </div>
             <div><BtnAllTextSm>Продлить</BtnAllTextSm></div>
           </td>
           <td class="text-center small">
             {{ getLocaleDateFromDateDigit(item.last_sign_in_at) }}
+            {{ getLocaleTimeFromDate(item.last_sign_in_at) }}
           </td>
           <td class="text-center small">
             {{ getLocaleDateFromDateDigit(item.banned_until) }}
@@ -100,6 +98,7 @@
 
 <script>
 import getLocaleDateFromDateDigit from './../../helpers/getLocaleDateFromDateDigit'
+import getLocaleTimeFromDate from './../../helpers/getLocaleTimeFromDate'
 
 import BtnAllTextSm from './../buttons/BtnAllTextSm.vue'
 
@@ -115,7 +114,8 @@ export default {
     'premium-off'
   ],
   methods: {
-    getLocaleDateFromDateDigit
+    getLocaleDateFromDateDigit,
+    getLocaleTimeFromDate
   }
 }
 </script>

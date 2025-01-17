@@ -44,7 +44,7 @@ export default {
       return this.users
     },
     lengthProUsers() {
-      return this.users.filter(item => item.user_metadata.premium).length
+      return this.users.filter(item => item.user_metadata.proStatus).length
     }
   },
   methods: {

@@ -23,7 +23,7 @@
           <td class="small">{{ item.email }}</td>
           <td
             class="text-center small"
-            :class="{ 'bg-success-subtle': item.user_metadata.subscription }"
+            :class="{ 'bg-success': item.user_metadata.subscription }"
           >
             <div>
               {{ item.user_metadata.subscription }}
@@ -61,7 +61,7 @@
           </td>
           <td
             class="text-center small"
-            :class="{ 'bg-success-subtle': item.user_metadata.premium }"
+            :class="{ 'bg-success': item.user_metadata.premium }"
           >
             <div>{{ item.user_metadata.premium }}</div>
             <div>

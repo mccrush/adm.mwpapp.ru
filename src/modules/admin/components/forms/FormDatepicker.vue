@@ -1,11 +1,28 @@
 <template>
-  <div>
-    <h2>FormDatepicker</h2>
+  <div class="input-group">
+    <input
+      class="form-control border-0 bg-light"
+      type="datetime-local"
+      id="dateEndPro"
+      :value="dateEndPro"
+      @change="$emit('update:dateEndPro', $event.target.value)"
+    />
+    <BtnTrash class="" @click="clearDate" />
   </div>
 </template>
 
 <script>
+import BtnTrash from './../../../../components/buttons/BtnTrash.vue'
+
 export default {
-  name: 'FormDatepicker'
+  name: 'FormDatepicker',
+  components: { BtnTrash },
+  props: ['dateEndPro'],
+  emits: ['update:dateEndPro'],
+  methods: {
+    clearDate() {
+      this.$emit('update:dateEndPro', '')
+    }
+  }
 }
 </script>

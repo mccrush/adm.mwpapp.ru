@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <FormUser :item="user" />
     <ul class="list-group">
       <ListItem

@@ -3,18 +3,41 @@
     <TheNavbar>
       <FormSearch v-model:searchText="searchText" />
     </TheNavbar>
+
     <div class="container">
+      <div class="row text-center mt-2">
+        <div class="col-6">
+          <select class="form-select form-select-sm" v-model="sort">
+            <option value="null" selected>Сортировка</option>
+            <option
+              v-for="sort in dataSortTypes"
+              :key="sort.sortBy"
+              :value="sort"
+            >
+              {{ sort.title + ' ' + sort.icon }}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">Filter</div>
+      </div>
+      <div>
+        <pre>{{ sort }}</pre>
+      </div>
       <div class="row text-center p-2">
         <div class="col-6">Всего: {{ lengthUsers }}</div>
         <div class="col-6">Pro: {{ lengthProUsers }}</div>
       </div>
 
-      <ListMain :items="searchUsers" />
+      <ListMain :items="sortUsers" />
     </div>
   </div>
 </template>
 
 <script>
+import { sortMethod } from './helpers/sortMethod'
+import { dataSortTypes } from './helpers/dataSortTypes'
+import { dataFilterTypes } from './helpers/dataFilterTypes'
+
 import TheNavbar from './../../components/interface/TheNavbar.vue'
 import FormSearch from './components/forms/FormSearch.vue'
 //import TableMain from './components/table/TableMain.vue'
@@ -25,7 +48,10 @@ export default {
   components: { TheNavbar, FormSearch, ListMain },
   data() {
     return {
-      searchText: ''
+      dataSortTypes,
+      dataFilterTypes,
+      searchText: '',
+      sort: null
     }
   },
   computed: {
@@ -39,6 +65,12 @@ export default {
         )
       }
       return this.users
+    },
+    sortUsers() {
+      if (this.sort) {
+        return sortMethod(this.searchUsers, this.sort.sortUp, this.sort.sortBy)
+      }
+      return this.searchUsers
     },
     lengthUsers() {
       return this.users.length

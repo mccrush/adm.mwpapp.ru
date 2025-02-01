@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'FormSort',
   props: ['searchText'],
   emits: ['update:searchText']
 }

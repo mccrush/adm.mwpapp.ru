@@ -1,18 +1,30 @@
 <template>
   <div>
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-    <!-- <PageIndex /> -->
+    <component :is="Component" />
   </div>
 </template>
 
 <script>
-//import PageIndex from './pages/PageIndex.vue'
+import PageLogin from './pages/PageLogin.vue'
+import PageAdmin from './pages/PageAdmin.vue'
 
-export default {}
+export default {
+  components: {
+    PageLogin,
+    PageAdmin
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
+    },
+    Component() {
+      if (this.isLoggedIn) {
+        return 'PageAdmin'
+      }
+      return 'PageLogin'
+    }
+  }
+}
 </script>
 
 <style lang="scss">

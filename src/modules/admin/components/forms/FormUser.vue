@@ -18,11 +18,16 @@
     <div v-if="item" class="offcanvas-body">
       <div>{{ item.email }}</div>
 
-      <div v-if="item.dateEndPro">
-        <div>
-          <span class="bg-warning rounded-1 small ms-2 ps-1 pe-1">
-            {{ getLocaleDateFromDateDigit(item.dateEndPro) }}
+      <div v-if="item.user_metadata.dateEndPro">
+        <div class="mt-3">
+          <span class="bg-warning rounded-1 small ps-1 pe-1">
+            {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPro) }}
           </span>
+        </div>
+        <div class="mt-3">
+          <BtnAllText class="w-100" @click="offDateEndPro"
+            >Отключить Pro</BtnAllText
+          >
         </div>
       </div>
       <div v-else>
@@ -31,7 +36,12 @@
         </div>
         <div class="text-center mt-3">dateEndPro = {{ dateEndPro }}</div>
         <div class="mt-3">
-          <BtnAllText class="w-100">Назначить Pro</BtnAllText>
+          <BtnAllText
+            class="w-100"
+            :disabled="!dateEndPro"
+            @click="setDateEndPro"
+            >Назначить Pro</BtnAllText
+          >
         </div>
       </div>
     </div>
@@ -39,6 +49,8 @@
 </template>
 
 <script>
+import { getLocaleDateFromDateDigit } from './../../helpers/getLocaleDateFromDateDigit'
+
 import FormDatepicker from './FormDatepicker.vue'
 import BtnAllText from './../../../../components/buttons/BtnAllText.vue'
 
@@ -54,6 +66,29 @@ export default {
   data() {
     return {
       dateEndPro: ''
+    }
+  },
+  methods: {
+    getLocaleDateFromDateDigit,
+    setDateEndPro() {
+      if (confirm('Назначить Pro?')) {
+        const new_user_metadata = this.item.user_metadata
+        new_user_metadata.dateEndPro = this.dateEndPro
+        this.$store.dispatch('updateItem', {
+          userId: this.item.id,
+          metadata: new_user_metadata
+        })
+      }
+    },
+    offDateEndPro() {
+      if (confirm('Точно отключить Pro?')) {
+        const new_user_metadata = this.item.user_metadata
+        new_user_metadata.dateEndPro = ''
+        this.$store.dispatch('updateItem', {
+          userId: this.item.id,
+          metadata: new_user_metadata
+        })
+      }
     }
   },
   watch: {

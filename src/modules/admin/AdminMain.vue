@@ -44,7 +44,7 @@ export default {
       return this.users.length
     },
     lengthProUsers() {
-      return this.users.filter(item => item.user_metadata.proStatus).length
+      return this.users.filter(item => item.user_metadata.dateEndPro).length
     }
   }
 }

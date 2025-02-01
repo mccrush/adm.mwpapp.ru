@@ -28,12 +28,12 @@ export default {
       }
     },
 
-    async updateItem({ commit }, { itemId, metadata }) {
+    async updateItem({ commit }, { userId, metadata }) {
       try {
         commit('setLoadingData', true)
         const { data: user, error } = await supabase.auth.admin.updateUserById(
-          itemId,
-          { user_metadata: { metadata } }
+          userId,
+          { user_metadata: metadata }
         )
 
         if (error) throw error

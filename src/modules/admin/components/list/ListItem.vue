@@ -8,8 +8,10 @@
     <div v-if="item.user_metadata.dateEndPro">
       {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPro) }}
     </div>
-    <div class="border border-warning bg-warning rounded small badge">
-      {{ getLocaleDateFromDateDigit(item.created_at) }}
+    <div>
+      <span class="bg-warning rounded small badge ps-1 pe-1">
+        {{ getLocaleDateFromDateDigit(item.created_at) }}
+      </span>
     </div>
   </div>
 </template>

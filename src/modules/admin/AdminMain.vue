@@ -3,11 +3,14 @@
     <TheNavbar>
       <FormSearch v-model:searchText="searchText" />
     </TheNavbar>
-    <div class="row text-center p-2">
-      <div class="col-6">Всего: {{ lengthUsers }}</div>
-      <div class="col-6">Pro: {{ lengthProUsers }}</div>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-6">Всего: {{ lengthUsers }}</div>
+        <div class="col-6">Pro: {{ lengthProUsers }}</div>
+      </div>
+
+      <ListMain :items="searchUsers" />
     </div>
-    <ListMain :items="searchUsers" />
   </div>
 </template>
 

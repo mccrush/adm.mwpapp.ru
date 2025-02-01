@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-body-tertiary p-3">
+  <nav class="bg-body-tertiary p-2 pt-3 pb-3">
     <div class="d-flex justify-content-between">
       <div>
         <slot>

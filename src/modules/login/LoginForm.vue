@@ -80,27 +80,11 @@
         @click="mod = 'login'"
         ><small>{{ dataLogin['login'].button }}</small></BtnLogin
       >
-      <!-- <BtnLogin
-        v-if="mod === 'login' || mod === 'restore'"
-        class="btn btn-sm btn-dark text-body-secondary w-50"
-        @click="mod = 'create'"
-      >
-        <small>{{ dataLogin['create'].button }}</small></BtnLogin
-      > -->
-      <!-- <BtnLogin
-        v-if="mod === 'login' || mod === 'create'"
-        class="btn btn-sm btn-dark text-body-secondary w-50"
-        @click="mod = 'restore'"
-        ><small>{{ dataLogin['restore'].button }}</small></BtnLogin
-      > -->
     </div>
   </div>
 </template>
 
 <script>
-//import { factoryUsers } from './../../factories/factoryUsers'
-//import { createExampleProject } from './helpers/createExampleProject'
-
 import BtnEyeHide from './components/buttons/BtnEyeHide.vue'
 import BtnEyeShow from './components/buttons/BtnEyeShow.vue'
 import BtnLogin from './components/buttons/BtnLogin.vue'
@@ -189,17 +173,12 @@ export default {
             email: this.email,
             password: this.password
           }
-          // const userMetaData = factoryUsers()
-          // userMetaData.projects = createExampleProject
+
           const result = await this.$store.dispatch('registerUser', {
             loginData
           })
 
           if (result === 200) {
-            // this.$store.commit('addMessage', {
-            //   text: 'Проверьте почту и подтвердите Email',
-            //   bg: 'alert-primary'
-            // })
           }
         } else {
           this.showMeesageForUser({

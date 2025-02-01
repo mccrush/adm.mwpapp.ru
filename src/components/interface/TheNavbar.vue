@@ -1,9 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-md bg-body-tertiary">
-    <div class="container-fluid d-flex justify-content-between">
-      <slot>
-        <div>Форма поиска</div>
-      </slot>
+  <nav class="bg-body-tertiary p-3">
+    <div class="d-flex justify-content-between">
+      <div>
+        <slot>
+          <div>Форма поиска</div>
+        </slot>
+      </div>
 
       <BtnAllText v-if="isLoggedIn" @click="logOut">Выйти</BtnAllText>
     </div>

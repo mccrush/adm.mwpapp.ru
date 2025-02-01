@@ -27,7 +27,7 @@ $enable-shadows: true;
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/helpers";
 
-@import "bootstrap/scss/tables";
+//@import "bootstrap/scss/tables";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 //@import "bootstrap/scss/transitions";
@@ -39,10 +39,10 @@ $enable-shadows: true;
 //@import "bootstrap/scss/accordion";
 // @import "bootstrap/scss/badge";
 // @import "bootstrap/scss/progress";
-//@import "bootstrap/scss/list-group";
-//@import "bootstrap/scss/close";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
 //@import "bootstrap/scss/modal";
-//@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/offcanvas";
 //@import "bootstrap/scss/spinners";
 //@import "bootstrap/scss/popover";
 

@@ -1,6 +1,5 @@
 <template>
-  <div class="border border-2 border-warning p-3">
-    <h4>AdminMain</h4>
+  <div>
     <TheNavbar>
       <FormSearch v-model:searchText="searchText" />
     </TheNavbar>

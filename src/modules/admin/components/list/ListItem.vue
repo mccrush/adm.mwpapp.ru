@@ -1,19 +1,24 @@
 <template>
-  <div class="border border-2 border-success p-3">
+  <li class="list-group-item mt-2">
     <div>{{ item.email }}</div>
-    <div class="d-flex justify-content-between border">
-      <div>CA {{ getLocaleDateFromDateDigit(item.created_at) }}</div>
-      <div>LS {{ getLocaleDateFromDateDigit(item.last_sign_in_at) }}</div>
-    </div>
-    <div v-if="item.user_metadata.dateEndPro">
-      {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPro) }}
-    </div>
     <div>
-      <span class="bg-warning rounded small badge ps-1 pe-1">
+      <span class="text-bg-secondary rounded small ps-1 pe-1">
         {{ getLocaleDateFromDateDigit(item.created_at) }}
       </span>
+      <span
+        v-if="item.last_sign_in_at"
+        class="text-bg-secondary rounded small ms-2 ps-1 pe-1"
+      >
+        {{ getLocaleDateFromDateDigit(item.last_sign_in_at) }}
+      </span>
+      <span
+        v-if="item.dateEndPro"
+        class="bg-warning rounded small ms-2 ps-1 pe-1"
+      >
+        {{ getLocaleDateFromDateDigit(item.dateEndPro) }}
+      </span>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>

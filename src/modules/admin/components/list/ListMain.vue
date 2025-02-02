@@ -31,12 +31,12 @@ export default {
     return {
       user: null
     }
-  },
-  watch: {
-    items(n, o) {
-      console.log('o = ', o)
-      console.log('n = ', n)
-    }
   }
+  // watch: {
+  //   items(n, o) {
+  //     console.log('o = ', o)
+  //     console.log('n = ', n)
+  //   }
+  // }
 }
 </script>

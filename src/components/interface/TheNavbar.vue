@@ -7,7 +7,9 @@
         </slot>
       </div>
 
-      <BtnAllText v-if="isLoggedIn" @click="logOut">Выйти</BtnAllText>
+      <BtnAllText v-if="isLoggedIn" class="text-body-secondary" @click="logOut"
+        >LO</BtnAllText
+      >
     </div>
   </nav>
 </template>

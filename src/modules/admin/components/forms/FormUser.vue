@@ -20,7 +20,7 @@
 
       <div v-if="item.user_metadata.dateEndPro">
         <div class="mt-3">
-          <span class="bg-warning rounded-1 small ps-1 pe-1">
+          <span class="bg-warning text-white rounded-1 small ps-1 pe-1">
             {{ getLocaleDateTimeFromDate(item.user_metadata.dateEndPro) }}
           </span>
         </div>

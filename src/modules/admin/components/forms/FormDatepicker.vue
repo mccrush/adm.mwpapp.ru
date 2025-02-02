@@ -7,7 +7,7 @@
       :value="dateEndPro"
       @change="$emit('update:dateEndPro', $event.target.value)"
     />
-    <BtnTrash class="" @click="clearDate" />
+    <BtnTrash class="" @click="this.$emit('update:dateEndPro', '')" />
   </div>
 </template>
 
@@ -18,11 +18,6 @@ export default {
   name: 'FormDatepicker',
   components: { BtnTrash },
   props: ['dateEndPro'],
-  emits: ['update:dateEndPro'],
-  methods: {
-    clearDate() {
-      this.$emit('update:dateEndPro', '')
-    }
-  }
+  emits: ['update:dateEndPro']
 }
 </script>

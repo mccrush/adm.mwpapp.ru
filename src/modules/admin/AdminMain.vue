@@ -17,10 +17,12 @@
             </option>
           </select>
         </div> -->
-        <div class="col-5 ps-1 pe-1">
+
+        <!-- <div class="col-5 ps-1 pe-1">
           <select class="form-select form-select-sm" v-model="sortBy">
-            <option value="email">email</option>
-            <option value="last_sign_in_at">last_sign_in_at</option>
+            <option value="email">EM</option>
+            <option value="created_at">CA</option>
+            <option value="last_sign_in_at">LS</option>
           </select>
         </div>
         <div class="col-2 ps-1">
@@ -28,17 +30,11 @@
             <option value="asc">asc</option>
             <option value="desc">desc</option>
           </select>
-        </div>
+        </div> -->
       </div>
+
       <!-- <div>
         <pre>{{ sort }}</pre>
-      </div> -->
-
-      <!-- <div class="row text-center small p-2">
-        <div class="col-3">All: {{ lengthUsers }}</div>
-        <div class="col-3">NA: {{ lengthNAUsers }}</div>
-        <div class="col-3">A: {{ lengthAUsers }}</div>
-        <div class="col-3">Pro: {{ lengthProUsers }}</div>
       </div> -->
 
       <div class="btn-group btn-group-sm w-100 mt-2 mb-2">
@@ -68,11 +64,47 @@
         >
       </div>
 
+      <div class="row text-center small p-2">
+        <div class="col-7 ps-1 pe-2">
+          <div class="btn-group btn-group-sm w-100">
+            <BtnAllText
+              :class="{ active: sortBy === 'email' }"
+              @click="sortBy = 'email'"
+              >EM</BtnAllText
+            >
+            <BtnAllText
+              :class="{ active: sortBy === 'created_at' }"
+              @click="sortBy = 'created_at'"
+              >CA</BtnAllText
+            >
+            <BtnAllText
+              :class="{ active: sortBy === 'last_sign_in_at' }"
+              @click="sortBy = 'last_sign_in_at'"
+              >LS</BtnAllText
+            >
+          </div>
+        </div>
+        <div class="col-5 ps-2 pe-1">
+          <div class="btn-group btn-group-sm w-100">
+            <BtnAllText
+              :class="{ active: sortUp === 'asc' }"
+              @click="sortUp = 'asc'"
+              >AS</BtnAllText
+            >
+            <BtnAllText
+              :class="{ active: sortUp === 'desc' }"
+              @click="sortUp = 'desc'"
+              >DS</BtnAllText
+            >
+          </div>
+        </div>
+      </div>
+
       <ListMain v-model:items="sortUsers" />
 
-      <small>
+      <!-- <small>
         <pre>{{ sortUsers }}</pre>
-      </small>
+      </small> -->
     </div>
   </div>
 </template>
@@ -127,10 +159,7 @@ export default {
     },
 
     sortUsers() {
-      console.log('sortUsers() this.sortBy =', this.sortBy)
-      console.log('sortUsers() this.sortUp =', this.sortUp)
-      const newarray = sortMethod3(this.searchUsers, this.sortUp, this.sortBy)
-      return newarray
+      return sortMethod3(this.searchUsers, this.sortUp, this.sortBy)
     },
 
     lengthUsers() {

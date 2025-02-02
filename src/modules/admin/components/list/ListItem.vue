@@ -1,7 +1,7 @@
 <template>
   <li class="list-group-item">
     <div class="d-flex justify-content-between">
-      <div>{{ item.email }}</div>
+      <div class="small">{{ item.email }}</div>
       <div v-if="item.user_metadata.dateEndPro">
         <span class="bg-warning rounded-1 small ms-2 ps-1 pe-1"> pro </span>
       </div>

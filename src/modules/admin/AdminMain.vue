@@ -6,18 +6,7 @@
 
     <div class="container">
       <div class="row text-center mt-2">
-        <div class="col-6 pe-2">
-          <select class="form-select form-select-sm" v-model="filter">
-            <option
-              v-for="filter in dataFilterTypes"
-              :key="filter.type"
-              :value="filter"
-            >
-              {{ filter.title }}
-            </option>
-          </select>
-        </div>
-        <div class="col-6 ps-2">
+        <!-- <div class="col-5 ps-2">
           <select class="form-select form-select-sm" v-model="sort">
             <option
               v-for="sort in dataSortTypes"
@@ -27,19 +16,59 @@
               {{ sort.title + ' ' + sort.icon }}
             </option>
           </select>
+        </div> -->
+        <div class="col-5 ps-1 pe-1">
+          <select class="form-select form-select-sm" v-model="sortBy">
+            <option value="email">email</option>
+            <option value="last_sign_in_at">last_sign_in_at</option>
+          </select>
+        </div>
+        <div class="col-2 ps-1">
+          <select class="form-select form-select-sm" v-model="sortUp">
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+          </select>
         </div>
       </div>
       <!-- <div>
         <pre>{{ sort }}</pre>
       </div> -->
-      <div class="row text-center small p-2">
+
+      <!-- <div class="row text-center small p-2">
         <div class="col-3">All: {{ lengthUsers }}</div>
         <div class="col-3">NA: {{ lengthNAUsers }}</div>
         <div class="col-3">A: {{ lengthAUsers }}</div>
         <div class="col-3">Pro: {{ lengthProUsers }}</div>
+      </div> -->
+
+      <div class="btn-group btn-group-sm w-100 mt-2 mb-2">
+        <BtnAllText
+          class="w-25"
+          :class="{ active: filterType === 'all' }"
+          @click="filterType = 'all'"
+          >All: {{ lengthUsers }}</BtnAllText
+        >
+        <BtnAllText
+          class="w-25"
+          :class="{ active: filterType === 'noactive' }"
+          @click="filterType = 'noactive'"
+          >NA: {{ lengthNAUsers }}</BtnAllText
+        >
+        <BtnAllText
+          class="w-25"
+          :class="{ active: filterType === 'active' }"
+          @click="filterType = 'active'"
+          >A: {{ lengthAUsers }}</BtnAllText
+        >
+        <BtnAllText
+          class="w-25"
+          :class="{ active: filterType === 'pro' }"
+          @click="filterType = 'pro'"
+          >Pro: {{ lengthProUsers }}</BtnAllText
+        >
       </div>
 
-      <ListMain :items="sortUsers" />
+      <ListMain v-model:items="sortUsers" />
 
       <small>
         <pre>{{ sortUsers }}</pre>
@@ -56,58 +85,52 @@ import { dataFilterTypes } from './helpers/dataFilterTypes'
 import TheNavbar from './../../components/interface/TheNavbar.vue'
 import FormSearch from './components/forms/FormSearch.vue'
 import ListMain from './components/list/ListMain.vue'
+import BtnAllText from './../../components/buttons/BtnAllText.vue'
 
 export default {
   name: 'AdminMain',
-  components: { TheNavbar, FormSearch, ListMain },
+  components: { TheNavbar, FormSearch, ListMain, BtnAllText },
   data() {
     return {
       dataSortTypes,
       dataFilterTypes,
       searchText: '',
       filter: { title: 'Активные', type: 'last_sign_in_at' },
-      sort: {
-        title: 'Email',
-        sortBy: 'email',
-        sortUp: 'asc',
-        icon: '🔼'
-      }
+      filterType: 'active',
+      sortBy: 'email',
+      sortUp: 'asc'
     }
   },
   computed: {
     users() {
       return this.$store.getters.users
     },
-    searchUsers() {
-      if (this.searchText) {
-        return this.users.filter(item =>
-          item.email.toUpperCase().includes(this.searchText.toUpperCase())
-        )
+
+    filterUsers() {
+      if (this.filterType === 'active') {
+        return this.users.filter(item => item.last_sign_in_at)
+      } else if (this.filterType === 'noactive') {
+        return this.users.filter(item => !item.last_sign_in_at)
+      } else if (this.filterType === 'pro') {
+        return this.users.filter(item => item.user_metadata.dateEndPro)
       }
       return this.users
     },
 
-    filterUsers() {
-      if (this.filter.type === 'last_sign_in_at') {
-        return this.searchUsers.filter(item => item[this.filter.type])
-      } else if (this.filter.type === '!last_sign_in_at') {
-        return this.searchUsers.filter(item => !item.last_sign_in_at)
-      } else if (this.filter.type === 'dateEndPro') {
-        return this.searchUsers.filter(
-          item => item.user_metadata[this.filter.type]
+    searchUsers() {
+      if (this.searchText) {
+        return this.filterUsers.filter(item =>
+          item.email.toUpperCase().includes(this.searchText.toUpperCase())
         )
       }
-      return this.searchUsers
+      return this.filterUsers
     },
 
     sortUsers() {
-      //console.log('sortUsers() this.sort =', this.sort)
-
-      if (this.sort) {
-        console.log('sortUsers() this.sort =', this.sort)
-        return sortMethod3(this.filterUsers, this.sort.sortUp, this.sort.sortBy)
-      }
-      return this.filterUsers
+      console.log('sortUsers() this.sortBy =', this.sortBy)
+      console.log('sortUsers() this.sortUp =', this.sortUp)
+      const newarray = sortMethod3(this.searchUsers, this.sortUp, this.sortBy)
+      return newarray
     },
 
     lengthUsers() {

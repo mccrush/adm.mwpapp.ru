@@ -26,13 +26,13 @@ export const sortMethod3 = (array, sortUp = 'asc', sortBy = 'email') => {
         console.log('a[sortBy] = ', a[sortBy]);
         console.log('new Date(a[sortBy]) = ', new Date(a[sortBy]));
 
-        const res = a[sortBy] - b[sortBy]
+        const res = new Date(a.last_sign_in_at) - new Date(b.last_sign_in_at)
         console.log('res = ', res);
 
         if (sortUp === 'asc') {
-          return a[sortBy] - b[sortBy]
+          return new Date(a.last_sign_in_at) - new Date(b.last_sign_in_at)
         } else {
-          return b[sortBy] - a[sortBy]
+          return new Date(b.last_sign_in_at) - new Date(a.last_sign_in_at)
         }
 
         //return sortUp === 'asc' ? new Date(a[sortBy]) - new Date(b[sortBy]) : new Date(b[sortBy]) - new Date(a[sortBy])

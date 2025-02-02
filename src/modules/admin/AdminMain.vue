@@ -40,6 +40,10 @@
       </div>
 
       <ListMain :items="sortUsers" />
+
+      <small>
+        <pre>{{ sortUsers }}</pre>
+      </small>
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@
 
     <div class="container">
       <div class="row text-center mt-2">
-        <div class="col-6">
+        <div class="col-6 pe-2">
           <select class="form-select form-select-sm" v-model="filter">
             <option
               v-for="filter in dataFilterTypes"
@@ -17,7 +17,7 @@
             </option>
           </select>
         </div>
-        <div class="col-6">
+        <div class="col-6 ps-2">
           <select class="form-select form-select-sm" v-model="sort">
             <option
               v-for="sort in dataSortTypes"
@@ -32,9 +32,11 @@
       <!-- <div>
         <pre>{{ sort }}</pre>
       </div> -->
-      <div class="row text-center p-2">
-        <div class="col-6">Всего: {{ lengthUsers }}</div>
-        <div class="col-6">Pro: {{ lengthProUsers }}</div>
+      <div class="row text-center small p-2">
+        <div class="col-3">All: {{ lengthUsers }}</div>
+        <div class="col-3">NA: {{ lengthNAUsers }}</div>
+        <div class="col-3">A: {{ lengthAUsers }}</div>
+        <div class="col-3">Pro: {{ lengthProUsers }}</div>
       </div>
 
       <ListMain :items="sortUsers" />
@@ -49,7 +51,6 @@ import { dataFilterTypes } from './helpers/dataFilterTypes'
 
 import TheNavbar from './../../components/interface/TheNavbar.vue'
 import FormSearch from './components/forms/FormSearch.vue'
-//import TableMain from './components/table/TableMain.vue'
 import ListMain from './components/list/ListMain.vue'
 
 export default {
@@ -96,7 +97,10 @@ export default {
     },
 
     sortUsers() {
+      //console.log('sortUsers() this.sort =', this.sort)
+
       if (this.sort) {
+        console.log('sortUsers() this.sort =', this.sort)
         return sortMethod3(this.filterUsers, this.sort.sortUp, this.sort.sortBy)
       }
       return this.filterUsers

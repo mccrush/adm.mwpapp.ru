@@ -21,7 +21,7 @@
       <div v-if="item.user_metadata.dateEndPro">
         <div class="mt-3">
           <span class="bg-warning rounded-1 small ps-1 pe-1">
-            {{ getLocaleDateFromDateDigit(item.user_metadata.dateEndPro) }}
+            {{ getLocaleDateTimeFromDate(item.user_metadata.dateEndPro) }}
           </span>
         </div>
         <div class="mt-3">
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { getLocaleDateFromDateDigit } from './../../helpers/getLocaleDateFromDateDigit'
+import { getLocaleDateTimeFromDate } from './../../helpers/getLocaleDateTimeFromDate'
 
 import FormDatepicker from './FormDatepicker.vue'
 import BtnAllText from './../../../../components/buttons/BtnAllText.vue'
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    getLocaleDateFromDateDigit,
+    getLocaleDateTimeFromDate,
     setDateEndPro() {
       if (confirm('Назначить Pro?')) {
         const new_user_metadata = this.item.user_metadata

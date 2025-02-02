@@ -1,7 +1,7 @@
 <template>
   <div class="row text-center small p-2 pt-1">
     <div class="col-7 ps-1 pe-2">
-      <div class="btn-group btn-group-sm w-100">
+      <div class="btn-group w-100">
         <BtnAllText
           :class="{ active: sortBy === 'email' }"
           @click="$emit('update:sortBy', 'email')"
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="col-5 ps-2 pe-1">
-      <div class="btn-group btn-group-sm w-100">
+      <div class="btn-group w-100">
         <BtnAllText
           :class="{ active: sortUp === 'asc' }"
           @click="$emit('update:sortUp', 'asc')"

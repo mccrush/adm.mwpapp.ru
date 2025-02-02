@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-group btn-group-sm w-100 mt-2 mb-2">
+  <div class="btn-group w-100 mt-2 mb-2">
     <BtnAllText
       class="w-25"
       :class="{ active: filterType === 'all' }"

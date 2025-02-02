@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <FormUser :item="user" />
+  <div class="mt-1">
     <ul class="list-group">
       <ListItem
         v-for="item in items"
@@ -12,6 +11,7 @@
         @click="user = item"
       />
     </ul>
+    <FormUser :item="user" />
   </div>
 </template>
 

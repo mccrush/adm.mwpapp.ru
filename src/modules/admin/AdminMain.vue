@@ -16,10 +16,6 @@
       <FormSort v-model:sortBy="sortBy" v-model:sortUp="sortUp" />
 
       <ListMain :items="sortUsers" />
-
-      <!-- <small>
-        <pre>{{ sortUsers }}</pre>
-      </small> -->
     </div>
   </div>
 </template>

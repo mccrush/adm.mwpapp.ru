@@ -5,32 +5,13 @@
     </TheNavbar>
 
     <div class="container">
-      <div class="btn-group btn-group-sm w-100 mt-2 mb-2">
-        <BtnAllText
-          class="w-25"
-          :class="{ active: filterType === 'all' }"
-          @click="filterType = 'all'"
-          >All: {{ lengthUsers }}</BtnAllText
-        >
-        <BtnAllText
-          class="w-25"
-          :class="{ active: filterType === 'noactive' }"
-          @click="filterType = 'noactive'"
-          >NA: {{ lengthNAUsers }}</BtnAllText
-        >
-        <BtnAllText
-          class="w-25"
-          :class="{ active: filterType === 'active' }"
-          @click="filterType = 'active'"
-          >A: {{ lengthAUsers }}</BtnAllText
-        >
-        <BtnAllText
-          class="w-25"
-          :class="{ active: filterType === 'pro' }"
-          @click="filterType = 'pro'"
-          >Pro: {{ lengthProUsers }}</BtnAllText
-        >
-      </div>
+      <FormFilter
+        v-model:filterType="filterType"
+        :lengthUsers="lengthUsers"
+        :lengthNAUsers="lengthNAUsers"
+        :lengthAUsers="lengthAUsers"
+        :lengthProUsers="lengthProUsers"
+      />
 
       <FormSort v-model:sortBy="sortBy" v-model:sortUp="sortUp" />
 
@@ -50,6 +31,7 @@ import { dataFilterTypes } from './helpers/dataFilterTypes'
 
 import TheNavbar from './../../components/interface/TheNavbar.vue'
 import FormSearch from './components/forms/FormSearch.vue'
+import FormFilter from './components/forms/FormFilter.vue'
 import FormSort from './components/forms/FormSort.vue'
 
 import ListMain from './components/list/ListMain.vue'
@@ -57,13 +39,19 @@ import BtnAllText from './../../components/buttons/BtnAllText.vue'
 
 export default {
   name: 'AdminMain',
-  components: { TheNavbar, FormSearch, FormSort, ListMain, BtnAllText },
+  components: {
+    TheNavbar,
+    FormSearch,
+    FormFilter,
+    FormSort,
+    ListMain,
+    BtnAllText
+  },
   data() {
     return {
       dataSortTypes,
       dataFilterTypes,
       searchText: '',
-      filter: { title: 'Активные', type: 'last_sign_in_at' },
       filterType: 'active',
       sortBy: 'email',
       sortUp: 'asc'

@@ -20,9 +20,9 @@
         </div>
         <div class="col-6">Filter</div>
       </div>
-      <div>
+      <!-- <div>
         <pre>{{ sort }}</pre>
-      </div>
+      </div> -->
       <div class="row text-center p-2">
         <div class="col-6">Всего: {{ lengthUsers }}</div>
         <div class="col-6">Pro: {{ lengthProUsers }}</div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { sortMethod } from './helpers/sortMethod'
+import { sortMethod3 } from './helpers/sortMethod3'
 import { dataSortTypes } from './helpers/dataSortTypes'
 import { dataFilterTypes } from './helpers/dataFilterTypes'
 
@@ -51,7 +51,12 @@ export default {
       dataSortTypes,
       dataFilterTypes,
       searchText: '',
-      sort: null
+      sort: {
+        title: 'Email',
+        sortBy: 'email',
+        sortUp: 'asc',
+        icon: '🔼'
+      }
     }
   },
   computed: {
@@ -68,7 +73,7 @@ export default {
     },
     sortUsers() {
       if (this.sort) {
-        return sortMethod(this.searchUsers, this.sort.sortUp, this.sort.sortBy)
+        return sortMethod3(this.searchUsers, this.sort.sortUp, this.sort.sortBy)
       }
       return this.searchUsers
     },

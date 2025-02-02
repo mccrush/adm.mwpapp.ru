@@ -7,35 +7,23 @@ export const sortMethod3 = (array, sortUp = 'asc', sortBy = 'email') => {
 
   if (array.length) {
 
-    return array.sort((a, b) => {
-      if (sortBy === 'email') {
+    return array.slice().sort((a, b) => {
+      a = a[sortBy]
+      b = b[sortBy]
 
+      if (sortBy === 'email') {
         if (sortUp === 'asc') {
-          if (a.email < b.email) return -1; // a перед b
-          if (a.email > b.email) return 1;  // a после b
-          return 0; // порядок не меняется
+          return (a === b ? 0 : a > b ? 1 : -1)
         } else {
-          if (b.email < a.email) return -1; // b перед a
-          if (b.email > a.email) return 1;  // b после a
-          return 0;
+          return (b === a ? 0 : b > a ? 1 : -1)
         }
 
       } else if (dateFields.includes(sortBy)) {
-        console.log('dateFields sortUp = ', sortUp);
-        console.log('dateFields sortBy = ', sortBy);
-        console.log('a[sortBy] = ', a[sortBy]);
-        console.log('new Date(a[sortBy]) = ', new Date(a[sortBy]));
-
-        const res = new Date(a.last_sign_in_at) - new Date(b.last_sign_in_at)
-        console.log('res = ', res);
-
         if (sortUp === 'asc') {
-          return new Date(a.last_sign_in_at) - new Date(b.last_sign_in_at)
+          return new Date(a) - new Date(b)
         } else {
-          return new Date(b.last_sign_in_at) - new Date(a.last_sign_in_at)
+          return new Date(b) - new Date(a)
         }
-
-        //return sortUp === 'asc' ? new Date(a[sortBy]) - new Date(b[sortBy]) : new Date(b[sortBy]) - new Date(a[sortBy])
       }
     })
   }

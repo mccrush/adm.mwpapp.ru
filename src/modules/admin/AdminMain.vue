@@ -5,38 +5,6 @@
     </TheNavbar>
 
     <div class="container">
-      <div class="row text-center mt-2">
-        <!-- <div class="col-5 ps-2">
-          <select class="form-select form-select-sm" v-model="sort">
-            <option
-              v-for="sort in dataSortTypes"
-              :key="sort.sortBy"
-              :value="sort"
-            >
-              {{ sort.title + ' ' + sort.icon }}
-            </option>
-          </select>
-        </div> -->
-
-        <!-- <div class="col-5 ps-1 pe-1">
-          <select class="form-select form-select-sm" v-model="sortBy">
-            <option value="email">EM</option>
-            <option value="created_at">CA</option>
-            <option value="last_sign_in_at">LS</option>
-          </select>
-        </div>
-        <div class="col-2 ps-1">
-          <select class="form-select form-select-sm" v-model="sortUp">
-            <option value="asc">asc</option>
-            <option value="desc">desc</option>
-          </select>
-        </div> -->
-      </div>
-
-      <!-- <div>
-        <pre>{{ sort }}</pre>
-      </div> -->
-
       <div class="btn-group btn-group-sm w-100 mt-2 mb-2">
         <BtnAllText
           class="w-25"
@@ -64,43 +32,9 @@
         >
       </div>
 
-      <div class="row text-center small p-2">
-        <div class="col-7 ps-1 pe-2">
-          <div class="btn-group btn-group-sm w-100">
-            <BtnAllText
-              :class="{ active: sortBy === 'email' }"
-              @click="sortBy = 'email'"
-              >EM</BtnAllText
-            >
-            <BtnAllText
-              :class="{ active: sortBy === 'created_at' }"
-              @click="sortBy = 'created_at'"
-              >CA</BtnAllText
-            >
-            <BtnAllText
-              :class="{ active: sortBy === 'last_sign_in_at' }"
-              @click="sortBy = 'last_sign_in_at'"
-              >LS</BtnAllText
-            >
-          </div>
-        </div>
-        <div class="col-5 ps-2 pe-1">
-          <div class="btn-group btn-group-sm w-100">
-            <BtnAllText
-              :class="{ active: sortUp === 'asc' }"
-              @click="sortUp = 'asc'"
-              >AS</BtnAllText
-            >
-            <BtnAllText
-              :class="{ active: sortUp === 'desc' }"
-              @click="sortUp = 'desc'"
-              >DS</BtnAllText
-            >
-          </div>
-        </div>
-      </div>
+      <FormSort v-model:sortBy="sortBy" v-model:sortUp="sortUp" />
 
-      <ListMain v-model:items="sortUsers" />
+      <ListMain :items="sortUsers" />
 
       <!-- <small>
         <pre>{{ sortUsers }}</pre>
@@ -116,12 +50,14 @@ import { dataFilterTypes } from './helpers/dataFilterTypes'
 
 import TheNavbar from './../../components/interface/TheNavbar.vue'
 import FormSearch from './components/forms/FormSearch.vue'
+import FormSort from './components/forms/FormSort.vue'
+
 import ListMain from './components/list/ListMain.vue'
 import BtnAllText from './../../components/buttons/BtnAllText.vue'
 
 export default {
   name: 'AdminMain',
-  components: { TheNavbar, FormSearch, ListMain, BtnAllText },
+  components: { TheNavbar, FormSearch, FormSort, ListMain, BtnAllText },
   data() {
     return {
       dataSortTypes,

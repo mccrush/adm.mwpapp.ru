@@ -61,7 +61,7 @@ export default {
       dataSortTypes,
       dataFilterTypes,
       searchText: '',
-      filter: { title: 'Все', type: '' },
+      filter: { title: 'Активные', type: 'last_sign_in_at' },
       sort: {
         title: 'Email',
         sortBy: 'email',

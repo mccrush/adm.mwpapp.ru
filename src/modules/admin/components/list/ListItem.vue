@@ -17,18 +17,11 @@
       >
         {{ getLocaleDateTimeFromDate(item.last_sign_in_at) }}
       </span>
-      <!-- <span
-        v-if="item.user_metadata.dateEndPro"
-        class="bg-warning rounded-1 small ms-2 ps-1 pe-1"
-      >
-        {{ getLocaleDateTimeFromDate(item.user_metadata.dateEndPro) }}
-      </span> -->
     </div>
   </li>
 </template>
 
 <script>
-import { getLocaleDateFromDateDigit } from './../../helpers/getLocaleDateFromDateDigit'
 import { getLocaleDateTimeFromDate } from './../../helpers/getLocaleDateTimeFromDate'
 
 export default {
@@ -37,7 +30,6 @@ export default {
     item: Object
   },
   methods: {
-    getLocaleDateFromDateDigit,
     getLocaleDateTimeFromDate
   }
 }

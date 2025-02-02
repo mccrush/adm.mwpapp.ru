@@ -26,7 +26,7 @@
 
 <script>
 import BtnEdit from './../buttons/BtnEdit.vue'
-import BtnTrash from './../buttons/BtnTrash.vue'
+import BtnTrash from '../../modules/admin/components/buttons/BtnTrash.vue'
 import BtnCreateElement from './../buttons/BtnCreateElement.vue'
 
 export default {

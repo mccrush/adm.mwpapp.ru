@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import BtnTrash from './../../../../components/buttons/BtnTrash.vue'
+import BtnTrash from '../buttons/BtnTrash.vue'
 
 export default {
   name: 'FormDatepicker',

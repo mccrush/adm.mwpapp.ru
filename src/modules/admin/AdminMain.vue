@@ -7,8 +7,18 @@
     <div class="container">
       <div class="row text-center mt-2">
         <div class="col-6">
+          <select class="form-select form-select-sm" v-model="filter">
+            <option
+              v-for="filter in dataFilterTypes"
+              :key="filter.type"
+              :value="filter"
+            >
+              {{ filter.title }}
+            </option>
+          </select>
+        </div>
+        <div class="col-6">
           <select class="form-select form-select-sm" v-model="sort">
-            <option value="null" selected>Сортировка</option>
             <option
               v-for="sort in dataSortTypes"
               :key="sort.sortBy"
@@ -18,7 +28,6 @@
             </option>
           </select>
         </div>
-        <div class="col-6">Filter</div>
       </div>
       <!-- <div>
         <pre>{{ sort }}</pre>
@@ -51,6 +60,7 @@ export default {
       dataSortTypes,
       dataFilterTypes,
       searchText: '',
+      filter: { title: 'Все', type: '' },
       sort: {
         title: 'Email',
         sortBy: 'email',
@@ -71,14 +81,35 @@ export default {
       }
       return this.users
     },
-    sortUsers() {
-      if (this.sort) {
-        return sortMethod3(this.searchUsers, this.sort.sortUp, this.sort.sortBy)
+
+    filterUsers() {
+      if (this.filter.type === 'last_sign_in_at') {
+        return this.searchUsers.filter(item => item[this.filter.type])
+      } else if (this.filter.type === '!last_sign_in_at') {
+        return this.searchUsers.filter(item => !item.last_sign_in_at)
+      } else if (this.filter.type === 'dateEndPro') {
+        return this.searchUsers.filter(
+          item => item.user_metadata[this.filter.type]
+        )
       }
       return this.searchUsers
     },
+
+    sortUsers() {
+      if (this.sort) {
+        return sortMethod3(this.filterUsers, this.sort.sortUp, this.sort.sortBy)
+      }
+      return this.filterUsers
+    },
+
     lengthUsers() {
       return this.users.length
+    },
+    lengthNAUsers() {
+      return this.users.filter(item => !item.last_sign_in_at).length
+    },
+    lengthAUsers() {
+      return this.users.filter(item => item.last_sign_in_at).length
     },
     lengthProUsers() {
       return this.users.filter(item => item.user_metadata.dateEndPro).length

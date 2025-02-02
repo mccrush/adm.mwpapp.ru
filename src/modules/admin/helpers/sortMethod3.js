@@ -8,9 +8,6 @@ export const sortMethod3 = (array, sortUp = 'asc', sortBy = 'email') => {
   if (array.length) {
 
     return array.sort((a, b) => {
-      console.log('sortUp = ', sortUp);
-      console.log('sortBy = ', sortBy);
-
       if (sortBy === 'email') {
 
         if (sortUp === 'asc') {

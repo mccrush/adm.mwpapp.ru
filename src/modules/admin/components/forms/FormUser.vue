@@ -33,19 +33,15 @@
           >
         </div>
       </div>
-      <div v-else>
-        <div class="mt-3">
-          <FormDatepicker v-model:dateEndPro="dateEndPro" />
-        </div>
-        <div class="text-center mt-3">dateEndPro = {{ dateEndPro }}</div>
-        <div class="mt-3">
-          <BtnAllText
-            class="w-100"
-            :disabled="!dateEndPro"
-            @click="setDateEndPro"
-            >Назначить Pro</BtnAllText
-          >
-        </div>
+
+      <div class="mt-3">
+        <FormDatepicker v-model:dateEndPro="dateEndPro" />
+      </div>
+      <div class="text-center mt-3">dateEndPro = {{ dateEndPro }}</div>
+      <div class="mt-3">
+        <BtnAllText class="w-100" :disabled="!dateEndPro" @click="setDateEndPro"
+          >Назначить Pro</BtnAllText
+        >
       </div>
     </div>
   </div>

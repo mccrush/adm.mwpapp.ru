@@ -19,8 +19,8 @@ console.log('main.js: App is run')
 const { data } = supabase.auth.onAuthStateChange((event, session) => {
   console.log(event)
   if (event === 'SIGNED_IN') {
-    store.commit('setAuthData', { type: 'userId', data: session.user.id })
-    store.dispatch('getItems', { type: 'users' })
+    if (!store.getters.userId) store.commit('setAuthData', { type: 'userId', data: session.user.id })
+    if (!store.getters.users.length) store.dispatch('getItems', { type: 'users' })
   } else if (event === 'SIGNED_OUT') {
     store.commit('setAuthData', { type: 'userId', data: null })
   } else if (event === 'TOKEN_REFRESHED') {

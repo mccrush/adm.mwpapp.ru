@@ -37,10 +37,15 @@
       <div class="mt-3">
         <FormDatepicker v-model:dateEndPro="dateEndPro" />
       </div>
-      <div class="text-center mt-3">dateEndPro = {{ dateEndPro }}</div>
+      <div class="text-center mt-3">
+        dateEndPro = {{ getLocaleDateTimeFromDate(dateEndPro) }}
+      </div>
       <div class="mt-3">
         <BtnAllText class="w-100" :disabled="!dateEndPro" @click="setDateEndPro"
-          >Назначить Pro</BtnAllText
+          >{{
+            item.user_metadata.dateEndPro ? 'Продлить' : 'Назначить'
+          }}
+          Pro</BtnAllText
         >
       </div>
     </div>

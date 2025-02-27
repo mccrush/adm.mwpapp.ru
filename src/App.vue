@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-width-720 m-auto shadow-sm rounded vh-100 pb-3">
     <component :is="Component" />
   </div>
 </template>

@@ -33,25 +33,27 @@
           >
         </div>
       </div>
-      <div v-else>
-        <div class="mt-3">
-          <FormDatepicker v-model:dateEndPro="dateEndPro" />
-        </div>
-        <div class="text-center mt-3">dateEndPro = {{ dateEndPro }}</div>
-        <div class="mt-3">
-          <BtnAllText
-            class="w-100"
-            :disabled="!dateEndPro"
-            @click="setDateEndPro"
-            >Назначить Pro</BtnAllText
-          >
-        </div>
+
+      <div class="mt-3">
+        <FormDatepicker v-model:dateEndPro="dateEndPro" />
+      </div>
+      <div class="text-center mt-3">
+        dateEndPro = {{ getLocaleDateTimeFromDate(dateEndPro) }}
+      </div>
+      <div class="mt-3">
+        <BtnAllText class="w-100" :disabled="!dateEndPro" @click="setDateEndPro"
+          >{{
+            item.user_metadata.dateEndPro ? 'Продлить' : 'Назначить'
+          }}
+          Pro</BtnAllText
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getDateNow2 } from './../../helpers/getDateNow2'
 import { getLocaleDateTimeFromDate } from './../../helpers/getLocaleDateTimeFromDate'
 
 import FormDatepicker from './FormDatepicker.vue'
@@ -76,7 +78,7 @@ export default {
     setDateEndPro() {
       if (confirm('Назначить Pro?')) {
         const new_user_metadata = this.item.user_metadata
-        new_user_metadata.dateStartPro = String(new Date())
+        new_user_metadata.dateStartPro = getDateNow2()
         new_user_metadata.dateEndPro = this.dateEndPro
         this.$store.dispatch('updateItem', {
           userId: this.item.id,
